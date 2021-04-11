@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>AdminX</title>
+
+    <!--icheck-->
+    <link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="css/clndr.css" rel="stylesheet">
+
+
+    <!--common-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <script src="js/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#pageSubmit").click(function () {
+                location.href="http://localhost:8000/humidityData?pn="+$("#pageNum").val()
+            })
+        })
+    </script>
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">John Doe</a></h4>
+                        <span>"Hello There..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">Account Information</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start左侧菜单-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list"><a href="#"><span>环境曲线显示</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/main}">实时温度曲线</a></li>
+                        <li><a th:href="@{/humidityChart}">实时湿度曲线</a></li>
+                        <li><a th:href="@{/lightChart}">实时光照曲线</a></li>
+                        <li><a th:href="@{/vocChart}">实时空气质量曲线</a></li>
+                        <li><a th:href="@{/humid}">实时紫外线等级曲线</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list nav-active"><a href="#">历史环境信息</a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/allData}">历史所有信息显示</a></li>
+                        <li><a th:href="@{/temperatureData}">历史温度信息显示</a></li>
+                        <li class="active"><a th:href="@{/humidityData}">历史湿度信息显示</a></li>
+                        <li><a th:href="@{/lightData}">历史光强度信息照显示</a></li>
+                        <li><a th:href="@{/vocData}">历史空气质量信息显示</a></li>
+                        <li><a th:href="@{/humidData}">历史紫外线等级信息显示</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href="#"><span>家居开关控制</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/ledControlPage}">灯光开关控制</a></li>
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/updateUser}"><span>修改用户信息</span></a>
+                </li>
+
+
+            </ul>
+            <!--sidebar nav end左侧菜单结束-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start上侧菜单-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+<!--                            <img src="images/photos/user-avatar.png" alt="" />-->
+                            <label th:text="${session.loginUser.userName}"></label>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end 上册菜单结束-->
+
+
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            湿度信息显示
+                            <span class="tools pull-right">
+<!--                <a href="javascript:;" class="fa fa-chevron-down"></a>-->
+                                <!--                <a href="javascript:;" class="fa fa-times"></a>-->
+                            </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="dataTables_info" id="dynamic-table_info">当前第 [[${environments.current}]] 页 总共 [[${environments.pages}]] 页 一共 [[${environments.total}]] 条数据
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="pageNum" placeholder="输入页码" style="width: 100px">
+                                        <input type="button" value="确认" id="pageSubmit">
+                                    </div>
+                                    <div class="span6">
+                                        <div class="dataTables_paginate paging_bootstrap pagination">
+                                            <!--页数小于9的情况                                            -->
+                                            <ul th:if="${environments.pages<=9}">
+                                                <li><a th:href="@{/humidityData(pn=${environments.current-1})}">← Previous</a></li>
+                                                <li th:class="${num==environments.current?'active':''}" th:each="num:${#numbers.sequence(1,environments.pages)}"><a th:href="@{/humidityData(pn=${num})}" >[[${num}]]</a></li>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current+1})}">Next → </a></li>
+                                            </ul>
+                                            <!--页数大于9的情况   但是小于五情况                                         -->
+                                            <ul th:if="${environments.pages>9 and environments.current<5}">
+                                                <li><a th:href="@{/humidityData(pn=${environments.current-1})}">← Previous</a></li>
+                                                <li th:class="${num==environments.current?'active':''}" th:each="num:${#numbers.sequence(environments.current,environments.current+4)}"><a th:href="@{/humidityData(pn=${num})}" >[[${num}]]</a></li>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current+1})}">Next → </a></li>
+                                            </ul>
+                                            <!--页数大于9的情况   但是剩余页小于4情况                                         -->
+                                            <ul th:if="${environments.pages>9 and environments.current>environments.pages-4}">
+                                                <li><a th:href="@{/humidityData(pn=${environments.current-1})}">← Previous</a></li>
+                                                <li th:class="${num==environments.current?'active':''}" th:each="num:${#numbers.sequence(environments.current-4,environments.pages)}"><a th:href="@{/humidityData(pn=${num})}" >[[${num}]]</a></li>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current+1})}">Next → </a></li>
+                                            </ul>
+                                            <!--页数大于9的情况   但是剩余页大于4情况                                         -->
+                                            <ul th:if="${environments.pages>9 and environments.current<=environments.pages-4 and environments.current>=5}">
+                                                <li><a th:href="@{/humidityData(pn=${environments.current-1})}">← Previous</a></li>
+                                                <li th:class="${num==environments.current?'active':''}" th:each="num:${#numbers.sequence(environments.current-4,environments.current+4)}"><a th:href="@{/humidityData(pn=${num})}" >[[${num}]]</a></li>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current+1})}">Next → </a></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>湿度(%rh)</th>
+                                        <th>采集日期</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="gradeX" th:each="environment,stat:${environments.records}">
+                                        <th th:text="${stat.count}"></th>
+                                        <td th:text="${environment.humidity}"></td>
+                                        <td th:text="${environment.date}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="dataTables_info" id="dynamic-table_info">当前第 [[${environments.current}]] 页 总共 [[${environments.pages}]] 页 一共 [[${environments.total}]] 条数据
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="dataTables_paginate paging_bootstrap pagination">
+                                            <ul>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current-1})}">← Previous</a></li>
+                                                <li th:class="${num==environments.current?'active':''}" th:each="num:${#numbers.sequence(1,environments.pages)}"><a th:href="@{/humidityData(pn=${num})}">[[${num}]]</a></li>
+                                                <li><a th:href="@{/humidityData(pn=${environments.current+1})}">Next → </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <a th:href="@{/downloadHumidity(pn=${environments.current})}"><i class="fa fa-arrow-circle-down"></i>以excel格式下载此页</a>
+
+
+
+
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+<!--        <footer>-->
+<!--            2014 &copy; AdminEx by ThemeBucket-->
+<!--        </footer>-->
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<script src="js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="js/sparkline/jquery.sparkline.js"></script>
+<script src="js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="js/iCheck/jquery.icheck.js"></script>
+<script src="js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="js/flot-chart/jquery.flot.js"></script>
+<script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="js/flot-chart/jquery.flot.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.selection.js"></script>
+<script src="js/flot-chart/jquery.flot.stack.js"></script>
+<script src="js/flot-chart/jquery.flot.time.js"></script>
+<!--<script src="js/main-chart.js"></script>-->
+
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+
+
+</body>
+</html>
